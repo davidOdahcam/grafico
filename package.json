@@ -1,0 +1,14 @@
+{
+  "name": "grafico",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass src/styles/main.scss dist/styles/style.css --watch"
+  },
+  "author": "David dos Santos Machado",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.62.1"
+  }
+}

@@ -1,0 +1,20 @@
+$track-color: #d4d4d4 !default;
+$thumb-color: #454545 !default;
+
+$thumb-size: 5px !default;
+$thumb-radius: 5px !default;
+
+::-webkit-scrollbar {
+    width: $thumb-size;
+    height: $thumb-size;
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid $track-color;
+    background-color: $track-color;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: $thumb-radius;
+}

@@ -1,0 +1,6 @@
+@use './../modules/tabs' with (
+    $tabsbar-layout-type: folder,
+    $enable-accent-active-tab-border: true
+);
+
+@use './../modules/scrollbar';

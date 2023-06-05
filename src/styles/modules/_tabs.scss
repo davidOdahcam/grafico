@@ -1,0 +1,160 @@
+// :::::::::::::::::::::::::::::
+// :::::::   CONTAINER   :::::::
+// :::::::::::::::::::::::::::::
+
+$tabsbar-layout-type: rectangle !default;
+$tabsbar-bg: #FEFCFD !default;
+$tabsbar-padding-top: 4px !default;
+$tabsbar-padding-bottom: 4px !default;
+$tabsbar-padding-left: 45px !default;
+
+// :::::::::::::::::::::::::::::
+// ::::::::::   ABA   ::::::::::
+// :::::::::::::::::::::::::::::
+
+$tab-color: #454545;
+$tab-bg: #d4d4d4 !default;
+$tab-bg-hover: darken($tab-bg, 15%);
+
+$tab-gap: 4px !default;
+$tab-radius-top: 0 !default;
+$tab-radius-bottom: 0 !default;
+
+@if ($tabsbar-layout-type == rounded) {
+    $tab-radius-top: if($tab-radius-top == 0, 4px, $tab-radius-top) !global;
+    $tab-radius-bottom: if($tab-radius-bottom == 0, 4px, $tab-radius-bottom) !global;
+} @else if ($tabsbar-layout-type == folder) {
+    $tab-radius-top: if($tab-radius-top == 0, 4px, $tab-radius-top) !global;
+    $tabsbar-padding-bottom: 0 !global;
+}
+
+// :::::::::::::::::::::::::::::
+// :::::::   ABA ATIVA   :::::::
+// :::::::::::::::::::::::::::::
+
+$active-tab-color: #ffffff;
+$active-tab-bg: #000000 !default;
+$active-tab-bg-hover: darken($active-tab-bg, 15%) !default;
+
+$active-tab-margin-bottom: 0;
+$active-tab-radius-top: $tab-radius-top;
+$active-tab-radius-bottom: $tab-radius-bottom;
+
+@if ($tabsbar-layout-type == folder_floating) {
+    $active-tab-margin-bottom: calc(-1 * $tabsbar-padding-bottom);
+    
+    $active-tab-radius-top: if($tab-radius-top == 0, 4px, $tab-radius-top) !global;
+    $active-tab-radius-bottom: 0;
+    
+    $tab-radius-top: if($tab-radius-top == 0, 4px, $tab-radius-top) !global;
+    $tab-radius-bottom: if($tab-radius-bottom == 0, 4px, $tab-radius-bottom) !global;
+}
+
+$enable-accent-active-tab-border: true !default;
+$accent-active-tab-border-color: #f16767 !default;
+$accent-active-tab-border-side: left !default;
+
+#tabsbar {
+    background: $tabsbar-bg;
+
+    #lista-abas {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        color: #fff;
+        overflow-y: hidden;
+        overflow-x: auto;
+
+        padding-top: $tabsbar-padding-top;
+        padding-bottom: $tabsbar-padding-bottom;
+        margin-left: $tabsbar-padding-left;
+
+        width: calc(100% - $tabsbar-padding-left);
+
+        .item {
+            display: grid;
+            grid-template-columns: 30px 1fr min-content;
+            margin-right: $tab-gap;
+            padding-left: $tab-gap;
+            padding-right: $tab-gap;
+            color: #FEFCFD;
+            cursor: pointer;
+    
+            & > * {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: $tab-gap;
+            }
+    
+            &.aba {
+                color: $tab-color;
+                background: $tab-bg;
+                border-top-left-radius: $tab-radius-top;
+                border-top-right-radius: $tab-radius-top;
+                border-bottom-left-radius: $tab-radius-bottom;
+                border-bottom-right-radius: $tab-radius-bottom;
+                transition: background 100ms linear;
+
+                .col-img {
+                    .imagem-nao-encontrada {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        width: 20px;
+                        height: 20px;
+                        background: rgba(0, 0, 0, 0.15);
+                    }
+    
+                    img {
+                        width: 100%;
+                    }
+                }
+        
+                .col-info {
+                    // background: green;
+                }
+                
+                .col-action {
+                    // background: blue;
+                }
+    
+                &:hover {
+                    background: $tab-bg-hover;
+                }
+    
+                &.ativa {
+                    color: $active-tab-color;
+                    background: $active-tab-bg;
+
+                    border-top-left-radius: $active-tab-radius-top;
+                    border-top-right-radius: $active-tab-radius-top;
+                    border-bottom-left-radius: $active-tab-radius-bottom;
+                    border-bottom-right-radius: $active-tab-radius-bottom;
+
+                    margin-bottom: $active-tab-margin-bottom;
+                    // border-top: 1px solid black;
+                    // border-left: 1px solid black;
+                    // border-right: 1px solid black;
+
+                    @if ($enable-accent-active-tab-border == true) {
+                        border-#{$accent-active-tab-border-side}: 4px solid $accent-active-tab-border-color;
+                    }
+
+                    &:hover {
+                        background: $active-tab-bg-hover;
+                    }
+                }
+            }
+        }
+
+        @if ($tabsbar-layout-type == folder or $tabsbar-layout-type == folder_floating) {
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+}

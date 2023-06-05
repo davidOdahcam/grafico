@@ -1,0 +1,29 @@
+body {
+    position: relative;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+ul, li {
+    list-style: none;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    height: 100%;
+    background: #000000;
+    margin: auto;
+}
